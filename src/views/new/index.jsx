@@ -6,9 +6,12 @@ import "./styles.css";
 export default class NewBlogPost extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: "" };
+    this.state = { };
     this.handleChange = this.handleChange.bind(this);
-    this.state = {post:{
+    this.state = {
+      text: "",
+      
+      post:{
           category: "",
           title: "",
           cover: "",
@@ -20,7 +23,7 @@ export default class NewBlogPost extends Component {
               name: "",
               avatar: ""
           },
-          content: "Text",
+          content: "html",
               }}   
   }
   
@@ -28,6 +31,8 @@ export default class NewBlogPost extends Component {
     if(prevState !== this.state.post){
 
       console.log(this.state.post)
+      console.log(this.state.text)
+      
     }
   }
   writePost = async() => {
@@ -75,11 +80,7 @@ export default class NewBlogPost extends Component {
           </Form.Group>
           <Form.Group controlId="blog-content" className="mt-3">
             <Form.Label>Blog Content</Form.Label>
-            {/* <ReactQuill
-              value={this.state.text}
-              onChange={this.handleChange}
-              className="new-blog-content"
-            /> */}
+            <ReactQuill value={this.state.post.content} onChange={(html) => this.setState({post:{content:html}})} className="new-blog-content" />
           </Form.Group>
           <Form.Group className="d-flex mt-3 justify-content-end">
             <Button type="reset" size="lg" variant="outline-dark">
