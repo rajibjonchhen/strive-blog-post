@@ -9,13 +9,47 @@ export default class NewBlogPost extends Component {
     this.state = { text: "" };
     this.handleChange = this.handleChange.bind(this);
     this.state = {post:{
-      title:'',
-      category:'',
-      blog:''
-    }}
+          category: "",
+          title: "",
+          cover: "",
+          readTime: {
+              value: null,
+              unit: ""
+          },
+          author: {
+              name: "",
+              avatar: ""
+          },
+          content: "Text",
+              }}   
   }
   
-  
+  componentDidUpdate = (prevProps, prevState) => {
+    if(prevState !== this.state.post){
+
+      console.log(this.state.post)
+    }
+  }
+  writePost = async() => {
+    try {
+      let response = await fetch("http://localhost:3001/blogs",{
+        method:"POST",
+        body: JSON.stringify(this.state.post),
+      header:{
+        "content-type":"application/JSON"
+      }
+
+      })
+      if(response.ok){
+        let data  = await response.json();
+        this.props.fetchPosts()
+      }else {
+        console.log("error on new posts")
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   handleChange(value) {
     this.setState({ text: value });
   }
@@ -27,7 +61,7 @@ export default class NewBlogPost extends Component {
         <Form className="mt-5">
           <Form.Group controlId="blog-form" className="mt-3">
             <Form.Label >Title</Form.Label>
-            <Form.Control value={this.state.post.title} onChange={(e) => this.setState({post:{...this.state.post,title:e.target.value}})} size="lg" placeholder="Title" />
+            <Form.Control value={this.state.post.title} onChange={(e) => this.setState({post:{...this.state.post ,title:e.target.value}})} size="lg" placeholder="Title" />
           </Form.Group>
           <Form.Group controlId="blog-category" className="mt-3">
             <Form.Label>Category</Form.Label>
@@ -41,11 +75,11 @@ export default class NewBlogPost extends Component {
           </Form.Group>
           <Form.Group controlId="blog-content" className="mt-3">
             <Form.Label>Blog Content</Form.Label>
-            <ReactQuill
+            {/* <ReactQuill
               value={this.state.text}
               onChange={this.handleChange}
               className="new-blog-content"
-            />
+            /> */}
           </Form.Group>
           <Form.Group className="d-flex mt-3 justify-content-end">
             <Button type="reset" size="lg" variant="outline-dark">

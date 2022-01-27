@@ -12,7 +12,7 @@ export default class Home extends Component {
       <Container fluid="sm">
         <h1 className="blog-main-title">Welcome to the Strive Blog!</h1>
        
-     {this.props.posts && <BlogList fetchPosts={this.props.fetchPosts} posts={this.props.posts}/>}
+       <BlogList/>
       </Container>
     );
   }
