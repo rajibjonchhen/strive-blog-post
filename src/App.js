@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
 import Home from "./views/home";
@@ -8,16 +8,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 function App() {
 
-  const [posts, setPosts] = useState([])
-  useEffect(()=>{
-    
-   
-  },[])
-
-
-
-  
-  
   return (
     <BrowserRouter>
       <NavBar />
