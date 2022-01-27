@@ -64,11 +64,12 @@ export default class NewBlogPost extends Component {
     return (
       <Container className="new-blog-container">
         <Form className="mt-5">
-          <Form.Group controlId="blog-form" className="mt-3">
+          <div className="d-flex">
+          <Form.Group controlId="blog-form" className="m-3">
             <Form.Label >Title</Form.Label>
             <Form.Control value={this.state.post.title} onChange={(e) => this.setState({post:{...this.state.post ,title:e.target.value}})} size="lg" placeholder="Title" />
           </Form.Group>
-          <Form.Group controlId="blog-category" className="mt-3">
+          <Form.Group controlId="blog-category" className="m-3">
             <Form.Label>Category</Form.Label>
             <Form.Control size="lg" as="select" value={this.state.post.category} onChange={(e) => this.setState({post:{...this.state.post, category:e.target.value}})}>
               <option>Horror</option>
@@ -78,9 +79,14 @@ export default class NewBlogPost extends Component {
               <option>Category5</option>
             </Form.Control>
           </Form.Group>
-          <Form.Group controlId="blog-content" className="mt-3">
+          <Form.Group controlId="blog-author" className="m-3">
+            <Form.Label >Author</Form.Label>
+            <Form.Control value={this.state.post.author.name} onChange={(e) => this.setState({post:{...this.state.post ,author:{...this.state.post.author,name:e.target.value}}})} size="lg" placeholder="Author" />
+          </Form.Group>
+          </div>
+          <Form.Group controlId="blog-content" className="m-3">
             <Form.Label>Blog Content</Form.Label>
-            <ReactQuill value={this.state.post.content} onChange={(html) => this.setState({post:{content:html}})} className="new-blog-content" />
+            <ReactQuill value={this.state.post.content} onChange={(html) => this.setState({post:{content:html}})} className="new-blog-content" placeholder="write the blog here"/>
           </Form.Group>
           <Form.Group className="d-flex mt-3 justify-content-end">
             <Button type="reset" size="lg" variant="outline-dark">
