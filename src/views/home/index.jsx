@@ -4,11 +4,15 @@ import BlogList from "../../components/blog/blog-list";
 import "./styles.css";
 
 export default class Home extends Component {
+  
+  
+  
   render() {
     return (
       <Container fluid="sm">
         <h1 className="blog-main-title">Welcome to the Strive Blog!</h1>
-        <BlogList />
+       
+     {this.props.posts && <BlogList fetchPosts={this.props.fetchPosts} posts={this.props.posts}/>}
       </Container>
     );
   }

@@ -4,9 +4,11 @@ import BlogItem from "../blog-item";
 import posts from "../../../data/posts.json";
 export default class BlogList extends Component {
   render() {
-    return (
+{console.log("from the bloglist",this.props.posts)
+}   
+ return (
       <Row>
-        {posts.map((post) => (
+        {this.props.posts && this.props.posts.map((post) => (
           <Col md={4} style={{ marginBottom: 50 }}>
             <BlogItem key={post.title} {...post} />
           </Col>

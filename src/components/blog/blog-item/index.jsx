@@ -4,8 +4,10 @@ import BlogAuthor from "../blog-author";
 import { Link } from "react-router-dom";
 import "./styles.css";
 export default class BlogItem extends Component {
+  
   render() {
     const { title, cover, author, _id } = this.props;
+    console.log("from the bloglist",title, cover, author, _id)
     return (
       <Link to={`/blog/${_id}`} className="blog-link">
         <Card className="blog-card">
